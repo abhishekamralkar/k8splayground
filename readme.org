@@ -1,0 +1,64 @@
+#+TITLE: Kind Cluster Installation
+
+* Prerequisites
+
+Make sure you have Docker installed on your machine.
+
+#+BEGIN_SRC sh
+sudo apt update
+sudo apt install docker.io
+sudo systemctl enable --now docker
+#+END_SRC
+
+* Install Kind
+
+Download the Kind binary from the GitHub releases page:
+
+#+BEGIN_SRC sh
+# For AMD64 / x86_64
+[ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.21.0/kind-linux-amd64
+# For ARM64
+[ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.21.0/kind-linux-arm64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+#+END_SRC
+
+* Create Kind Cluster
+
+Create a Kind configuration file (kind-config.yaml) with the following content:
+
+#+BEGIN_SRC yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+#+END_SRC
+
+Create the Kind cluster using the configuration file:
+
+#+BEGIN_SRC sh
+kind create cluster --config kind-config.yaml
+#+END_SRC
+
+* Verify the Cluster
+
+Use kubectl to verify the Kind cluster:
+
+#+BEGIN_SRC sh
+sudo apt install kubectl
+kubectl cluster-info
+#+END_SRC
+
+This command should display information about your Kind cluster.
+
+* Cleanup
+
+To delete the Kind cluster when you're done:
+
+#+BEGIN_SRC sh
+kind delete cluster
+#+END_SRC
+
+
