@@ -1,0 +1,29 @@
+#+Title: Kubernetes ReplicaSet: nginx-replicaset
+
+This repository contains the Kubernetes YAML file to deploy a ReplicaSet for an nginx. The ReplicaSet ensures that a specified number of replicas (pods) of the application are running at all times.
+
+*  Usage
+
+** Apply the ReplicaSet configuration to your Kubernetes cluster:
+
+#+begin_src bash
+kubectl apply -f replicaset.yaml
+#+end_src
+
+** Verify deployment
+
+#+begin_src bash
+kubectl get replicaset
+kubectl get pods
+kubectl describe replicaset nginx
+#+end_src
+
+** Scale deployment
+
+#+bagin_src bash
+# Scale up to 5 replicas
+kubectl scale replicaset nginx-replicaset --replicas=5
+
+# Scale down to 2 replicas
+kubectl scale replicaset nginx-replicaset --replicas=2
+#+end_src
