@@ -2,6 +2,8 @@
 
 This repository contains the Kubernetes YAML file to deploy a ReplicaSet for an nginx. The ReplicaSet ensures that a specified number of replicas (pods) of the application are running at all times.
 
+Deployments allow you to run one or more pods in a flexible configuration, defining how many replicas of the pods need to run, on which types of nodes they should schedule (for example via taints and tolerations), and the deployment pattern (for example, Recreate or Rolling deployment).
+
 *  Usage
 
 ** Apply the ReplicaSet configuration to your Kubernetes cluster:

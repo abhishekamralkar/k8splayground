@@ -1,0 +1,29 @@
+#+Title: Kubernetes StatefulSet: nginx-statefuleset
+
+StatefulSets allow you to run one or more pods with a persistent ID and persistent storage, suitable for stateful applications.
+
+*  Usage
+
+** Apply the StatefulSet configuration to your Kubernetes cluster:
+
+#+begin_src bash
+kubectl apply -f nginx-statefulset.yaml
+#+end_src
+
+** Verify deployment
+
+#+begin_src bash
+kubectl get statefuleset
+kubectl get pods
+kubectl describe statefuleset nginx
+#+end_src
+
+** Scale deployment
+
+#+bagin_src bash
+# Scale up to 5 replicas
+kubectl scale statefulset nginx-statefuleset --replicas=5
+
+# Scale down to 2 replicas
+kubectl scale statefulset nginx-statefulset --replicas=2
+#+end_src
